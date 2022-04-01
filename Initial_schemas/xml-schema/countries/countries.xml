@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<countries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="countries-schema.xsd">
+    <country>Nigeria</country>
+    <region>SUB-SAHARAN AFRICA</region>
+    <population>10</population>
+</countries>

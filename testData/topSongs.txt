@@ -1,0 +1,23 @@
+{
+  "id": 603,
+  "title": "3 Peat",
+  "artist": "Lil wayne",
+  "genre": "HipHop",
+  "year": 2010,
+}
+
+--energy, danceability and liveliness not require for json
+
+<songs>
+    <song>
+        <id>604</id>
+        <title>I</title>
+        <artist>Kendrick Lamar</artist>
+        <genre>Rap</genre>
+        <year>2013</year>
+        <bpm>201</bpm>
+        <energy>20</energy>
+        <danceability>80</danceability>
+        <liveliness>30</liveliness>
+    </song>
+</songs>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Json Visualise</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+</head>
+<body>
+<canvas id="chart" width="600" height=200"></canvas>
+<script>
+
+    //store the number of countries that producer more album from 2010 to 2019
+    let countryCount2010 = countryCount2011 = countryCount2012 =
+        countryCount2013 = countryCount2014 = countryCount2015 =
+            countryCount2016 = countryCount2017 = countryCount2018
+                = countryCount2019 = 0;
+
+    //store the amount of albums from 2010 to 2019
+    let albumCount2010 = albumCount2011 = albumCount2012 =
+        albumCount2013 = albumCount2014 = albumCount2015 =
+            albumCount2016 = albumCount2017 = albumCount2018 =
+                albumCount2019 = 0;
+
+    //store the amount of top songs from 2010 to 2019
+    let songCount2010 = songCount2011 = songCount2012 =
+        songCount2013 = songCount2014 = songCount2015 =
+            songCount2016 = songCount2017 = songCount2018 =
+                songCount2019 = 0;
+
+    chart();
+
+    async function chart() {
+        await getAlbumData();
+        await getTopSongData();
+        await getCountriesCombined();
+        const ctx = document.getElementById('chart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019'],
+                datasets: [
+                    {
+                        label: 'Album Released',
+                        barPercentage: 0.8,
+                        data: [albumCount2010, albumCount2011, albumCount2012, albumCount2013, albumCount2014, albumCount2015,
+                            albumCount2016, albumCount2017, albumCount2018, albumCount2019],
+                        backgroundColor: [
+                            'rgb(54, 162, 235)',
+                            'rgb(54, 162, 235)',
+                            'rgb(54, 162, 235)',
+                            'rgb(54, 162, 235)',
+                            'rgb(54, 162, 235)',
+                            'rgb(54, 162, 235)',
+                            'rgb(54, 162, 235)',
+                            'rgb(54, 162, 235)',
+                            'rgb(54, 162, 235)',
+                            'rgb(54, 162, 235)',
+                        ],
+
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Top Songs Released',
+                        barPercentage: 0.8,
+                        data: [songCount2010, songCount2011, songCount2012, songCount2013,
+                            songCount2014, songCount2015, songCount2016, songCount2017, songCount2018, songCount2019],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(255, 99, 132, 0.2)'
+                        ],
+                        borderWidth: 1
+                    },
+
+                    {
+                        label: 'Countries',
+                        barPercentage: 0.8,
+                        data: [countryCount2010, countryCount2011, countryCount2012, countryCount2013,
+                            countryCount2014, countryCount2015, countryCount2016, countryCount2017, countryCount2018, countryCount2019],
+                        backgroundColor: [
+                            'rgb(102, 153, 153)',
+                            'rgb(102, 153, 153)',
+                            'rgb(102, 153, 153)',
+                            'rgb(102, 153, 153)',
+                            'rgb(102, 153, 153)',
+                            'rgb(102, 153, 153)',
+                            'rgb(102, 153, 153)',
+                            'rgb(102, 153, 153)',
+                            'rgb(102, 153, 153)',
+                            'rgb(102, 153, 153)'
+                        ],
+                        borderWidth: 1
+                    }
+                ]
+            },
+        });
+    }
+
+    //album visualisation
+    async function getAlbumData() {
+        await fetch('http://localhost:4000/api/album', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        }).then(res => {
+            return res.json();
+        }).then(data => {
+            //store the result
+            let albumJson = data.albums.album;
+            //looping through the json result gotten from the api to count the album released from 2010 to 2019
+            for (let i = 0; i < albumJson.length; i++) {
+                if (albumJson[i].year === 2010) {
+                    albumCount2010++;
+                }
+
+                if (albumJson[i].year === 2011) {
+                    albumCount2011++;
+                }
+
+                if (albumJson[i].year === 2012) {
+                    albumCount2012++;
+                }
+
+                if (albumJson[i].year === 2013) {
+                    albumCount2013++;
+                }
+
+                if (albumJson[i].year === 2014) {
+                    albumCount2014++;
+                }
+
+                if (albumJson[i].year === 2015) {
+                    albumCount2015++;
+                }
+
+                if (albumJson[i].year === 2016) {
+                    albumCount2016++;
+                }
+
+                if (albumJson[i].year === 2017) {
+                    albumCount2017++;
+                }
+
+                if (albumJson[i].year === 2018) {
+                    albumCount2018++;
+                }
+
+                if (albumJson[i].year === 2019) {
+                    albumCount2019++;
+                }
+            }
+        });
+    }
+
+    //Top songs visualisation
+    async function getTopSongData() {
+        await fetch('http://localhost:4000/api/topsong', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        }).then(res => {
+            return res.json();
+        }).then(data => {
+            //store the result
+            let songJson = data.songs.song;
+            //looping through the json result gotten from the api to count the song released from 2010 to 2019
+            for (let i = 0; i < songJson.length; i++) {
+                //top song 2010
+                if (songJson[i].year === 2010) {
+                    songCount2010++;
+                }
+                //top songs 2011
+                if (songJson[i].year === 2011) {
+                    songCount2011++;
+                }
+                //top songs 2012
+                if (songJson[i].year === 2012) {
+                    songCount2012++;
+                }
+                //top songs 2013
+                if (songJson[i].year === 2013) {
+                    songCount2013++
+                }
+                //top songs 2014
+                if (songJson[i].year === 2014) {
+                    songCount2014++;
+                }
+                //top songs 2015
+                if (songJson[i].year === 2015) {
+                    songCount2015++;
+                }
+                if (songJson[i].year === 2016) {
+                    songCount2016++;
+                }
+                if (songJson[i].year === 2017) {
+                    songCount2017++;
+                }
+                if (songJson[i].year === 2018) {
+                    songCount2018++;
+                }
+                if (songJson[i].year === 2019) {
+                    songCount2019++;
+                }
+            }
+        });
+    }
+
+    //country visualisation
+    async function getCountriesCombined() {
+        await fetch('http://localhost:4000/api/countryCombined', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        }).then(res => {
+            return res.json();
+        }).then(data => {
+
+            let countryCombined = data.countriesCombined.countries.country;
+            for (let i = 0; i < countryCombined.length; i++) {
+
+                if (countryCombined[i].year === 2010) {
+                    countryCount2010++;
+                }
+
+                if (countryCombined[i].year === 2011) {
+                    countryCount2011++;
+                }
+
+                if (countryCombined[i].year === 2012) {
+                    countryCount2012++;
+                }
+
+                if (countryCombined[i].year === 2013) {
+                    countryCount2013++;
+                }
+
+                if (countryCombined[i].year === 2014) {
+                    countryCount2014++;
+                }
+
+                if (countryCombined[i].year === 2015) {
+                    countryCount2015++;
+                }
+
+                if (countryCombined[i].year === 2016) {
+                    countryCount2016++;
+                }
+
+                if (countryCombined[i].year === 2017) {
+                    countryCount2017++;
+                }
+
+                if (countryCombined[i].year === 2018) {
+                    countryCount2018++;
+                }
+
+                if (countryCombined[i].year === 2019) {
+                    countryCount2019++;
+                }
+            }
+        });
+    }
+
+</script>
+</body>
+</html>

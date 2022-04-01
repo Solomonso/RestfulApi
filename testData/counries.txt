@@ -1,0 +1,12 @@
+{
+    "country": "Ghana",
+    "region": "OCEANIA",
+    "population": 57794
+}
+
+
+<countries>
+    <country>Nigeria</country>
+    <region>SUB-SAHARAN AFRICA</region>
+    <population>10</population>
+</countries>

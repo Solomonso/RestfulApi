@@ -1,0 +1,37 @@
+{
+  "albums": [
+      {
+         "id": 515,
+          "artist": "Eminem",
+          "albumName": "EminemShow",
+          "label": "Epic",
+          "year":2010,
+          "country": "Usa",
+          "reviews": [
+              {
+               "albumReview": "Great",
+               "reviewerName": "Solomon"
+              }
+          ]
+      }
+  ]
+}
+
+--Note if one or more body is missing or not valid data type, will not work
+
+<albums>
+    <album>
+        <id>516</id>
+        <artist>Tupac</artist>
+        <albumName>All Eyez</albumName>
+        <label>Death Row Records</label>
+        <year>1996</year>
+        <country>USA</country>
+        <reviews>
+            <review>
+                <albumReview>Classic</albumReview>
+                <reviewerName>Solomon</reviewerName>
+            </review>
+        </reviews>
+    </album>
+</albums>

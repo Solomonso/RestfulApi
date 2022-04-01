@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "id": "AlbumList schema",
+  "description": "This schema describes the album list structure",
+  "type": "object",
+  "properties": {
+    "albums": {
+     "type": "array",
+      "minItems": 2,
+      "maxItems": 5,
+      "description": "contains a list of albums",
+     "items": [
+       {
+         "type": "object",
+         "properties": {
+           "id": {
+             "type": "integer",
+             "minimum": 1,
+             "description": "The id of the album"
+
+           },
+           "artist": {
+             "type": "string",
+             "minLength": 2,
+             "description": "Shows the name of the artist"
+           },
+           "albumName": {
+             "type": "string",
+             "minLength": 1,
+             "description": "Shows the album belonging to an artist"
+           },
+           "label": {
+             "type": "string",
+             "minLength": 2,
+             "maxLength": 30
+           },
+           "year": {
+             "type": "integer",
+             "minimum": 2010,
+             "maximum": 2019
+           },
+           "reviews": {
+             "type": "array",
+             "items": [
+               {
+                 "type": "object",
+                 "properties": {
+                   "albumReview": {
+                     "type": "string",
+                     "description": "The written review of the album"
+                   },
+                   "reviewerName": {
+                     "type": "string",
+                     "description": "The name of the reviewer"
+                   }
+                 },
+                 "required": ["albumReview", "reviewerName"]
+               }
+             ]
+           },
+           "country": {
+             "type": "string",
+             "description": "The country the album was recorded in"
+           }
+         },
+         "required": ["id", "artist", "albumName", "label", "year", "country", "reviews"]
+       }
+     ]
+   }
+  }
+}
+
