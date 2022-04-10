@@ -52,5 +52,4 @@ Postman for testing the endpoints.
 
 This is a link to download DB browser for SQLite  https://sqlitebrowser.org/dl/ if you want to load the database found in the project as **database.sqlite**, but it is not needed to test the endpoints.
 
- 
-## Note do not forget to specify the content type in the header for either json or xml
+#### Note do not forget to specify the content type in the header for either json or xml
