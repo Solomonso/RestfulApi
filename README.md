@@ -1,15 +1,13 @@
 
-## Getting Started
+## Restful API with Node JS and Express Js and SQLite
 
- Before you run the server to test the various endpoint, make you sure have node installed on your pc. This is the link https://nodejs.org/en/ download the LTS version if Node JS is not already Installed on your pc. 
+Developed a robust RESTful API encompassing three datasets sourced from the Kaggle website.
 
-Test data are provided for testing json and xml which is in the **testData** directory found inside the project.
+## Visualization
 
-Summary of the project structure
+The visualization is implemented using Chart.js. The bar chart plots the album released, top songs released, and the countries, providing a visual comparison of these attributes.
 
-* **Controller** directory where all the operations for the CRUD functions are written
-* **routes** directory  for the API routes
-* **Schemas** directory with the schemas used for validating.
+![Visualization](Visualization.png)
 
 ## Installation 
 
@@ -46,10 +44,13 @@ All have functionalities of CRUD both in xml and Json and data is validated.
 
 The Content-type should be changed to application/json or application/xml. 
 
-## Software needed
-
+## Technologies Used
+- Node.Js and Express.js: Used for creating the RESTful API.
+- SQLite: Used as the database to store the  data.
+- Chart.js: Used for creating the bar chart visualization.
+- 
 Postman for testing the endpoints.
 
 This is a link to download DB browser for SQLite  https://sqlitebrowser.org/dl/ if you want to load the database found in the project as **database.sqlite**, but it is not needed to test the endpoints.
 
-#### Note do not forget to specify the content type in the header for either json or xml
+#### Note do not forget to specify the content type in the header for either json or xml when testing the endpoints in Postman
